@@ -1,0 +1,4 @@
+POST http://localhost:1600/actuator/bus-refresh
+Content-Type: application/json
+{}
+###

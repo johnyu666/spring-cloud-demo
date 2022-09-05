@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: p1000
+  application:
+    name: eureka-server
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+---
+spring:
+  profiles:
+    - p1000
+server:
+  port: 1000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1100/eureka
+---
+spring:
+  profiles:
+    - p1100
+server:
+  port: 1100
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka

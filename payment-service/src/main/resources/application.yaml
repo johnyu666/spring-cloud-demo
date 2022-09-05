@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: p3000
+  application:
+    name: payment-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka/,http://localhost:1100/eureka/
+info:
+  company: actuator科技
+
+
+---
+spring:
+  profiles: p3000
+server:
+  port: 3000
+---
+spring:
+  profiles: p3001
+server:
+  port: 3001
+

@@ -1,0 +1,23 @@
+# 文件为bootstrap.yaml
+server:
+  port: 3500
+spring:
+  cloud:
+    config: #此段为使用"配置服务"的信息
+      discovery:
+        enabled: true
+        service-id: config-center #指到配置中心的"配置服务"注册名称
+      name: config
+      profile: dev #配置文件的名称为：config-dev.[yml|properties]
+      label: master #只在git上可用，表示分支
+  application:
+    name: config-client
+  rabbitmq: #用于订阅配置信息的变化；与@RefreshScope配合使用
+    password: guest
+    username: guest
+    port: 5672
+    host: johnyu.cn
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka,http://localhost:1100/eureka

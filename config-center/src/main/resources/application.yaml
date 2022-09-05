@@ -1,0 +1,32 @@
+server:
+  port: 1600
+spring:
+  application:
+    name: config-center
+  profiles:
+    # active: native #使用config.server.native下的文件配置，此时rabbitmq的配置是无效的
+    active: git #使用config.server.native下的文件配置,此时可以通过endpoints进行刷新
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config
+          bootstrap: true
+        git:
+          uri: https://github.com/johnyu666/connfig-server.git
+          lable: master
+  rabbitmq:
+    password: guest
+    username: guest
+    port: 5672
+    host: johnyu.cn
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka,http://localhost:1100/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh' # 通过发送一个post空请求到 /bus-refresh，结合客户端的@RefreshScope接收配置变化
